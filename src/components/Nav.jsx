@@ -27,14 +27,14 @@ const Nav = ({ children }) => {
   return (
     <NavStyle>
       <LinkContainer>
-        <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
+        <Link to="/home" style={{ textDecoration: "none", color: "#fff" }}>
           <p>Home</p>
         </Link>
         <Link to="/about" style={{ textDecoration: "none", color: "#fff" }}>
           <p>About</p>
         </Link>
       </LinkContainer>
-      {location.pathname.length > 1 ? null : children}
+      {location.pathname === "/home" && children}
       {/* <SearchBar onSearch={onSearch} /> */}
     </NavStyle>
   );

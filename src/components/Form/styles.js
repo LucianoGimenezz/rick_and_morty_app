@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const Container = styled.section`
   width: 100%;
@@ -8,6 +8,8 @@ export const Container = styled.section`
 `;
 
 export const FormStyle = styled.form`
+position: relative;
+top: calc(40% - 120px);
   width: 30%;
   max-width: 500px;
   margin: 0 auto;
@@ -50,8 +52,20 @@ export const Input = styled.input`
   }
 `;
 
+const spinner = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`
+
 export const ButtonLogin = styled.button`
   width: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 40px;
   border: none;
   cursor: pointer;
@@ -60,8 +74,20 @@ export const ButtonLogin = styled.button`
   font-weight: 600;
   background-color: #09f;
   font-size: 1.1rem;
+  &.loading {
+    opacity: .5;
+  }
   &:hover {
     opacity: .5;
+  }
+  & > div {
+    width: 20px;
+    margin: 0 auto;
+    height: 20px;
+    border-radius: 50%;
+    border: 4px solid rgba(0, 0, 0, .4);
+    border-left-color: #000;
+    animation: ${spinner} 1s linear infinite;
   }
 `;
 
@@ -71,6 +97,10 @@ export const DivStyle = styled.div`
   max-width: 334px;
   display: flex;
   justify-Content:center;
+  flex-direction: column;
+  & > .danger {
+    color: #ef4444;
+  }
 `
 
 export const Side = styled.section`

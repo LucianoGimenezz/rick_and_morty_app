@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Nav from "./components/Nav.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Details from "./pages/Details";
@@ -20,7 +20,23 @@ const Wrapper = styled.section`
 function App() {
   const [characters, setCharacters] = useState([]);
   const [error, setError] = useState(false);
+  const [access, setAccess] = useState(false);
+  const userName = "example@example.com";
+  const password = "example123";
   const location = useLocation();
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    !access && navigate("/")
+  }, [access])
+
+  function login(userData) {
+    if (userData.username === userName && userData.password === password) {
+      setAccess(true);
+      navigate("/home");
+      }
+  }
 
   function onSearch(id) {
     if (!characters.some((character) => character.id === parseInt(id))) {
@@ -64,8 +80,8 @@ function App() {
       </Nav>
       }
       <Routes>
-          <Route path="" element={<Login />} />
-          <Route path="" element={<Home characters={characters} onClose={onClose}/>}/>
+          <Route path="" element={<Login login={login}/>} />
+          <Route path="/home" element={<Home characters={characters} onClose={onClose}/>}/>
           <Route path="about" element={<About />}/>
           <Route path="/detail/:detailId" element={<Details />}/>
           <Route path="/404" element={<NotFound />}/>

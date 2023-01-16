@@ -7,10 +7,10 @@ const Container = styled.section`
   display: flex;
 `;
 
-export const Login = () => {
+export const Login = ({ login }) => {
   return (
     <Container>
-      <Form />
+      <Form login={login} />
     </Container>
   );
 };
