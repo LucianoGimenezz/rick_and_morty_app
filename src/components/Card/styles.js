@@ -52,9 +52,18 @@ export const ButtonDelete = styled.button`
 `;
 
 export const DivContainer = styled.div`
+display: flex;
+justify-content: space-between;
   padding: 10px;
 `;
 
 export const TitleInfo = styled.p`
   color: #fff;
 `;
+
+export const ButtonFav = styled.button`
+ background-color: transparent;
+ border: none;
+ font-size: 1.6rem;
+ cursor: pointer;
+`

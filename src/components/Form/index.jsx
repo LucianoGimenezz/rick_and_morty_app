@@ -9,8 +9,9 @@ import {
   Side,
 } from "./styles";
 import { validation } from "./validation";
+import Img from "../../assets/rickandmorty.png";
 
-export const Form = ({ login }) => {
+export const Form = ({ login, loginError }) => {
   const [userData, setUserData] = useState({ username: "", password: "" });
   const [load, setLoad] = useState(false);
   const [errors, setErrors] = useState({
@@ -41,14 +42,12 @@ export const Form = ({ login }) => {
   return (
     <Container>
       <Side>
-        <img
-          src="https://assets.stickpng.com/images/58f37720a4fa116215a9240f.png"
-          alt="Rick and Morty Logo"
-        />
+        <img src={Img} alt="Rick and Morty Logo" />
       </Side>
       <FormStyle onSubmit={handleSubmit}>
         <DivStyle>
           <Input
+            autoComplete="off"
             value={userData.username}
             required
             type="email"
@@ -72,6 +71,11 @@ export const Form = ({ login }) => {
         <ButtonLogin type="submit" className={load && "loading"}>
           {!load ? "Log in" : <div></div>}
         </ButtonLogin>
+        {loginError && (
+          <p style={{ color: "#ef4444" }}>
+            The email or password entered is not correct
+          </p>
+        )}
       </FormStyle>
     </Container>
   );

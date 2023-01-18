@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Nav from "./components/Nav.jsx";
+import Nav from "./components/Nav";
 import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
@@ -20,7 +20,8 @@ const Wrapper = styled.section`
 function App() {
   const [characters, setCharacters] = useState([]);
   const [error, setError] = useState(false);
-  const [access, setAccess] = useState(false);
+  const [access, setAccess] = useState(true);
+  const [loginError, setLoginError] = useState(false);
   const userName = "example@example.com";
   const password = "example123";
   const location = useLocation();
@@ -29,12 +30,16 @@ function App() {
 
   useEffect(() => {
     !access && navigate("/")
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [access])
 
   function login(userData) {
     if (userData.username === userName && userData.password === password) {
+      setLoginError(false)
       setAccess(true);
       navigate("/home");
+      }else {
+        setLoginError(true);
       }
   }
 
@@ -75,12 +80,12 @@ function App() {
   return (
     <Wrapper>
       {location.pathname !== '/' &&
-      <Nav>
+      <Nav setAccess={setAccess}>
         <SearchBar onSearch={onSearch} error={error} onRandom={onRandom} />
       </Nav>
       }
       <Routes>
-          <Route path="" element={<Login login={login}/>} />
+          <Route path="" element={<Login login={login} loginError={loginError}/>} />
           <Route path="/home" element={<Home characters={characters} onClose={onClose}/>}/>
           <Route path="about" element={<About />}/>
           <Route path="/detail/:detailId" element={<Details />}/>
