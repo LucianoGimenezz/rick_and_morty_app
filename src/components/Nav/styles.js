@@ -20,7 +20,7 @@ export const LinkContainer = styled.div`
   gap: 16px;
   color: #fff;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   cursor: pointer;
 `;
 
@@ -49,18 +49,8 @@ export const spand = keyframes`
 export const P = styled.p`
   position: relative;
   &:hover {
-    &::after {
-      content: " ";
-      width: 3px;
-      height: 41px;
-      position: absolute;
-      transform: rotate(90deg);
-      top: 11px;
-      left: 26px;
-      background-color: #fff;
-      border-radius: 2px;
-      animation: ${spand} 1s forwards;
-      transition: all 0.3s;
+    color: #09f; 
+    opacity: .4;
     }
-  }
+  
 `;

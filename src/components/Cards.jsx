@@ -1,7 +1,7 @@
 import Card from "./Card";
 import styled from "styled-components";
 
-const Grid = styled.section`
+export const Grid = styled.section`
   display: grid;
   width: 90%;
   padding: 30px;

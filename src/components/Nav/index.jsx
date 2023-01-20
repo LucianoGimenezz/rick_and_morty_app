@@ -21,6 +21,12 @@ const Nav = ({ children, setAccess }) => {
           <Link to="/about" style={{ textDecoration: "none", color: "#fff" }}>
             <P>About</P>
           </Link>
+          <Link
+            to="/favourites"
+            style={{ textDecoration: "none", color: "#fff" }}
+          >
+            <P>Favourites</P>
+          </Link>
           <ButtonLogOut onClick={() => setAccess(false)}>Logout</ButtonLogOut>
         </SectionsContainer>
       </LinkContainer>
