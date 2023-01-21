@@ -7,7 +7,7 @@ import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Details from "./pages/Details";
 import NotFound from "./pages/404.jsx";
-import Favourite from "./components/favourites";
+import Favourite from "./pages/favourites";
 import { Login } from "./pages/Login.jsx";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -21,7 +21,7 @@ const Wrapper = styled.section`
 `;
 
 function App() {
-  const { fav } = useSelector(state => state);
+  const { allCharacters } = useSelector(state => state);
   const [characters, setCharacters] = useState([]);
   const [error, setError] = useState(false);
   const [access, setAccess] = useState(true);
@@ -80,7 +80,7 @@ function App() {
   function onClose(id) {
     const result = characters.filter((character) => character.id !== id);
     setCharacters(result);
-    if (fav.some(character => character.id === id)) {
+    if (allCharacters.some(character => character.id === id)) {
       dispatch(actions.removeFavourite(id));
     }
   }

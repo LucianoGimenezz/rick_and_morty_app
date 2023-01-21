@@ -23,7 +23,7 @@ function Card(props) {
     id,
     addFavourite,
     removeFavourite,
-    fav,
+    allCharacters,
   } = props;
   const handleFavouriteCharacter = () => {
     if (isFav) {
@@ -36,13 +36,13 @@ function Card(props) {
   };
 
   useEffect(() => {
-    fav.forEach((char) => {
+    allCharacters.forEach((char) => {
       if (char.id === id) {
         setIsFav(true);
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fav]);
+  }, [allCharacters]);
 
   return (
     <CardStyle>
@@ -81,7 +81,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    fav: state.fav,
+    allCharacters: state.allCharacters,
   };
 }
 
