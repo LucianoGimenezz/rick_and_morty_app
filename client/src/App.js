@@ -49,7 +49,7 @@ function App() {
 
   function onSearch(id) {
     if (!characters.some((character) => character.id === parseInt(id))) {
-      fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      fetch(`http://localhost:3001/rickandmorty/character/${id}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.name) {
