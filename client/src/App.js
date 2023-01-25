@@ -9,8 +9,7 @@ import Details from "./pages/Details";
 import NotFound from "./pages/404.jsx";
 import Favourite from "./pages/favourites";
 import { Login } from "./pages/Login.jsx";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as  actions from './redux/action/actions'
 
 const Wrapper = styled.section`
@@ -49,7 +48,7 @@ function App() {
 
   function onSearch(id) {
     if (!characters.some((character) => character.id === parseInt(id))) {
-      fetch(`http://localhost:3001/rickandmorty/character/${id}`)
+      fetch(`http://localhost:3001/rickandmorty/onsearch/${id}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.name) {
