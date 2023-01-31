@@ -1,22 +1,20 @@
-const getCharbyId = (res, id) => {
-  fetch(`https://rickandmortyapi.com/api/character/${id}`)
-    .then(res => res.json())
-    .then(data => {
-      const character = {
-        name: data.name,
-        image: data.image,
-        gender: data.gender,
-        species: data.species,
-        id: data.id
-      }
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify((character)))
+module.exports = async (res, id) => {
+  try {
+    const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
+    const data = await response.json()
+    const { error } = data
+    if (error) {
+      throw new Error(error)
     }
-    )
-    .catch(err => {
-      res.writeHead(500, { 'Content-Type': 'text/plain' })
-      res.end(err.message)
-    })
+    const characterResponse = {
+      id: data.id,
+      name: data.name,
+      image: data.image,
+      gender: data.gender,
+      species: data.species
+    }
+    res.status(200).json(characterResponse)
+  } catch (error) {
+    res.status(400).json({ error })
+  }
 }
-
-module.exports = getCharbyId

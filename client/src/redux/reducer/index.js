@@ -1,4 +1,4 @@
-import { ADD_FAVOURITE, REMOVE_FAVOURITE, FILTER, ORDER } from "../action/types"
+import { ADD_FAVOURITE, REMOVE_FAVOURITE, FILTER, ORDER, GET_FAVOURITE} from "../action/types"
 
 const typeOrders = {
     ASC: "Ascendente",
@@ -12,8 +12,8 @@ const initialState = {
 
 export const reducer = ( state = initialState, { type, payload } ) => {
     switch (type) {
-        case ADD_FAVOURITE: 
-          const characters = [...state.fav, payload]
+        case ADD_FAVOURITE:
+          const characters = [...state.allCharacters, payload]
             return {
                 ...state, 
                 fav: characters,

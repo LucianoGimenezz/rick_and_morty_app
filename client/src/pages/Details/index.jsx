@@ -17,7 +17,7 @@ export default function Details() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:3001/rickandmorty/detail/${detailId}`)
+    fetch(`http://localhost:3000/rickandmorty/detail/${detailId}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.name) {

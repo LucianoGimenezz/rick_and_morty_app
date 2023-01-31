@@ -1,8 +1,8 @@
 import { CardStyle, Img, SectionInfo, TitleName, DivContainer, TitleInfo} from "../../components/Card/styles";
 import { Grid } from "../../components/Cards";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
-import { filterCards, orderCards } from '../../redux/action/actions'
+import { useSelector,useDispatch } from "react-redux";
+import { filterCards, orderCards, getFavourites } from '../../redux/action/actions'
 import { useEffect } from "react";
 
 const Container = styled.div`
@@ -23,12 +23,11 @@ const Select = styled.select`
 `
 const Genders = ['Male', 'Female', 'unknown', 'Genderless'];
 
-const Favourite = (props) => {
+const Favourite = () => {
     const { fav } = useSelector(state => state)
     const dispatch = useDispatch()
-
     useEffect(() => {
-        dispatch(filterCards('All'))
+        dispatch(getFavourites())
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
@@ -48,7 +47,6 @@ const Favourite = (props) => {
                 gap: "6px"
             }}>
                 <Select onChange={handleChangeOrder}>
-                    <p>Order:</p>
                     <option value="Ascendente">Ascendente</option>
                     <option value="Descendiente">Descendiente</option>
                 </Select>

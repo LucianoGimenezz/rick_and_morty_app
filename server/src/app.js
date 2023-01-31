@@ -1,37 +1,28 @@
 const express = require('express')
-const app = express()
 const bodyParser = require('body-parser')
+const cors = require('cors')
+const app = express()
 const PORT = 3000
+const getCharbyId = require('./controllers/getCharById.js')
+const getCharDetails = require('./controllers/getCharDetail')
 let fav = []
 
+const corsOptions = {
+  origin: 'http://localhost:3001',
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }))
 app.use(bodyParser.json({ limit: '50mb' }))
 
 app.get('/rickandmorty/character/:id', (req, res) => {
   const { id } = req.params
-
   if (!id) {
     res.status(400).json({ error: 'Es necesario enviar un id' })
     return
   }
-  fetch(`https://rickandmortyapi.com/api/character/${id}`)
-    .then(res => res.json())
-    .then(data => {
-      const { error } = data
-      if (error) {
-        res.status(400).json(error)
-        return
-      }
-      const response = {
-        id: data.id,
-        name: data.name,
-        image: data.image,
-        gender: data.gender,
-        species: data.species
-      }
-      res.status(200).json(response)
-    })
-    .catch(err => res.status(404).json(err))
+  getCharbyId(res, id)
 })
 
 app.get('/rickandmorty/detail/:detailId', (req, res) => {
@@ -40,25 +31,7 @@ app.get('/rickandmorty/detail/:detailId', (req, res) => {
     res.status(400).json({ error: 'Es necesario enviar un id' })
     return
   }
-  fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
-    .then(res => res.json())
-    .then(data => {
-      const { error } = data
-      if (error) {
-        res.status(400).json(error)
-        return
-      }
-      const response = {
-        name: data.name,
-        image: data.image,
-        gender: data.gender,
-        species: data.species,
-        status: data.status,
-        origin: data.origin
-      }
-      res.status(200).json(response)
-    })
-    .catch(err => res.status(404).json(err))
+  getCharDetails(res, detailId)
 })
 
 app.get('/rickandmorty/fav', (req, res) => {
@@ -73,7 +46,7 @@ app.post('/rickandmorty/fav', (req, res) => {
   }
 
   fav.push(character)
-  res.status(201).send()
+  res.status(201).send('Created')
 })
 
 app.delete('/rickandmorty/fav/:id', (req, res) => {
@@ -83,8 +56,7 @@ app.delete('/rickandmorty/fav/:id', (req, res) => {
     res.status(400).json({ error: 'Es necesario un id' })
     return
   }
-  const checkIfCharacterExist = fav.find((character) => character.id === parseInt(id))
-  if (checkIfCharacterExist) {
+  if (fav.some(fav => fav.id === parseInt(id))) {
     const updatedFavs = fav.filter(fav => fav.id !== parseInt(id))
     fav = updatedFavs
     res.status(200).send()
