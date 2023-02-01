@@ -7,24 +7,24 @@ const typeOrders = {
 
 const initialState = {
     fav: [],
-    allCharacters: []
+    allCharacters: [],
 }
 
 export const reducer = ( state = initialState, { type, payload } ) => {
     switch (type) {
+        case GET_FAVOURITE:
+             return {
+                ...state,
+                fav: [...payload],
+                allCharacters: [...payload]
+             }
         case ADD_FAVOURITE:
-          const characters = [...state.allCharacters, payload]
             return {
                 ...state, 
-                fav: characters,
-                allCharacters: characters
             }
         case REMOVE_FAVOURITE: 
-         let filteredChars = state.allCharacters.filter((character) => character.id !== payload);
           return {
              ...state,
-             fav: filteredChars,
-             allCharacters: filteredChars
           }
         case FILTER:
             let filteredCharsByGender;

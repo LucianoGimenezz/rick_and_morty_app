@@ -58,7 +58,7 @@ const Favourite = () => {
                 </Select>
         </div>
         <Grid>
-             { fav?.map(item => (
+             {fav?.map(item => (
                 <CardStyle key={item.id}>
                     <div style={{
                     height: "90%",
