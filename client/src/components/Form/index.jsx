@@ -6,7 +6,6 @@ import {
   Label,
   ButtonLogin,
   DivStyle,
-  Side,
 } from "./styles";
 import { validation } from "./validation";
 import Img from "../../assets/rickandmorty.png";
@@ -41,10 +40,16 @@ export const Form = ({ login, loginError }) => {
   };
   return (
     <Container>
-      <Side>
-        <img src={Img} alt="Rick and Morty Logo" />
-      </Side>
       <FormStyle onSubmit={handleSubmit}>
+        <img
+          src={Img}
+          alt="Rick and Morty"
+          style={{
+            position: "absolute",
+            width: "260px",
+            top: "-13px",
+          }}
+        />
         <DivStyle>
           <Input
             autoComplete="off"

@@ -23,7 +23,7 @@ function App() {
   const { allCharacters } = useSelector(state => state);
   const [characters, setCharacters] = useState([]);
   const [error, setError] = useState(false);
-  const [access, setAccess] = useState(true);
+  const [access, setAccess] = useState(false);
   const [loginError, setLoginError] = useState(false);
   const userName = "example@example.com";
   const password = "example123";

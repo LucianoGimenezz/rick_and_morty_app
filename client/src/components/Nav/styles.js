@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 
 
 export const NavStyle = styled.nav`
+z-index: 1;
   width: 100%;
   height: 75px;
   display: flex;

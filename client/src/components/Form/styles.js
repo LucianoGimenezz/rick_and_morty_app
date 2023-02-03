@@ -10,7 +10,7 @@ export const Container = styled.section`
 export const FormStyle = styled.form`
 position: relative;
 top: calc(40% - 120px);
-  width: 30%;
+  width: 90%;
   max-width: 500px;
   margin: 0 auto;
   height: 400px;
@@ -34,6 +34,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  align-self: center;
   width: 100%;
   padding: 12px;
   border: 1px solid #fff;
@@ -98,6 +99,7 @@ export const DivStyle = styled.div`
   display: flex;
   justify-Content:center;
   flex-direction: column;
+  /* align-items: center; */
   & > .danger {
     color: #ef4444;
   }
