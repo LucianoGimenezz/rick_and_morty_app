@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const getCharbyId = require('../controllers/getCharById')
+const handler = require('../controllers')
 
 router.get('/:id', (req, res) => {
   const { id } = req.params
@@ -7,7 +7,7 @@ router.get('/:id', (req, res) => {
     res.status(400).json({ error: 'Es necesario enviar un id' })
     return
   }
-  getCharbyId(res, id)
+  handler.getCharById(res, id)
 })
 
 module.exports = router
