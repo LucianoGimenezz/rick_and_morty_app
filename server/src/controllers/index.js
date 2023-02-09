@@ -1,4 +1,5 @@
 module.exports = {
   getCharById: require('./getCharById'),
-  getCharDetail: require('./getCharDetail')
+  getCharDetail: require('./getCharDetail'),
+  saveApiData: require('./saveApiData')
 }
